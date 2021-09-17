@@ -18,22 +18,18 @@ describe('Cambiar direccion de entrega: ',  () => {
         await browser.pause(3000);
     });
 
-    it('Abrir usuario creado para este test', async () => {  // Ingresa a cuenta creada para este test
+    it('Abrir usuario creado para este test e ingresa a sus direcciones', async () => {  // Ingresa a cuenta creada para este test
 
         await AuthenticationPage.nuevoRegistro();
         await AuthenticationPage.ingresarCuentaExistente(); 
         await browser.pause(3000);
-        await MyAccountPage.clickearElemento(await MyAccountPage.myAdresses);
+        await MyAccountPage.ingresarMisDirecciones();
     });
 
     emailEditado.forEach(({direccionEditada}) => {
         it('Editar la direccion de entrega', async () => {    //Edita la dirección con datos tomados desde .datos
             
-            await YourAdressesPage.clickearElemento(await YourAdressesPage.botonUpdate);
-            ///await YourAdressesPage.editarDireccionEntrega();
-            await YourAdressesPage.clickearElemento(await YourAdressesPage.address); 
-            await YourAdressesPage.vaciarCampoYEnviarTexto(await YourAdressesPage.address, direccionEditada);
-            await YourAdressesPage.clickearElemento(await YourAdressesPage.botonSave);
+            await YourAdressesPage.editarDireccionEntrega(direccionEditada);
             await browser.pause(3000);
 
             expect(await YourAdressesPage.addressFija.getText()).to.equal(direccionEditada,'Error: no se editó la dirección correctamente');

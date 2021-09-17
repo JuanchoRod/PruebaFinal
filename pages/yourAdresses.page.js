@@ -20,25 +20,24 @@ class YourAdresses extends BasePage {
    /**
     * Editar direccion de entrega
     */
-    async editarDireccionEntrega() {
+    async editarDireccionEntrega(direccionEditada) {
         addStep('Editar direccion de entrega');
+        await super.clickearElemento(await this.botonUpdate);
         await super.clickearElemento(this.address); 
-        await super.vaciarCampoYEnviarTexto(await this.address, emailEditado.direccionEditada);
+        await super.vaciarCampoYEnviarTexto(await this.address, direccionEditada);
         await super.clickearElemento(this.botonSave);
     }
 
+   
     /**
     * Vuelve a editar a la direccion original
     */
-     async restaruarDireccionEntrega() {
+    async restaruarDireccionEntrega() {
         addStep('Vuelve a editar a la direccion original');
         await super.clickearElemento(this.address); 
         await super.vaciarCampoYEnviarTexto(await this.address, datos.direccion);
         await super.clickearElemento(this.botonSave);
     }
-
-
-
-
 }
+
 export default new YourAdresses();

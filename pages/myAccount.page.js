@@ -14,7 +14,10 @@ class MyAccountPage extends BasePage {
 
 
    //-------------------------------------------------------------------------------------------------------//
- 
+    
+   async ingresarMisDirecciones() {
+        await this.clickearElemento(await this.myAdresses);
+   }
    
 
 }
